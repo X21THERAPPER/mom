@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Mom!</title>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;700;900&family=Playfair+Display:wght@600;800&display=swap');
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #ffe5f0, #fff1ff, #ffe6f7);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        overflow-x: hidden;
+    }
+
+    /* Floating Hearts Background */
+    .floating-heart {
+        position: fixed;
+        width: 18px;
+        height: 18px;
+        background: #ff5c8a;
+        opacity: 0.7;
+        clip-path: path("M10 30 L0 15 A10 10 0 1 1 20 15 Z");
+        animation: floatUp 6s linear infinite;
+        z-index: -1;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) scale(1); opacity: 0.7; }
+        100% { transform: translateY(-120vh) scale(1.4); opacity: 0; }
+    }
+
+    .card-container {
+        perspective: 1800px;
+    }
+
+    .card {
+        width: 360px;
+        height: 520px;
+        transition: transform 1.2s ease, box-shadow .5s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+        position: relative;
+        border-radius: 2rem;
+    }
+
+    .card.flipped {
+        transform: rotateY(180deg);
+    }
+
+    .card-face {
+        position: absolute;
+        width: 100%; height: 100%;
+        backface-visibility: hidden;
+        border-radius: 2rem;
+        overflow: hidden;
+    }
+
+    /* Front */
+    .card-front {
+        background: linear-gradient(135deg, #ffd5e8, #ff9ac2);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        box-shadow: 0 20px 50px rgba(255, 0, 120, .3);
+        animation: breathing 4s infinite ease-in-out;
+    }
+
+    @keyframes breathing {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+    }
+
+    /* Back */
+    .card-back {
+        transform: rotateY(180deg);
+        background: white;
+        border: 4px solid #ff8fb7;
+
+        /* Soft background image */
+        background-image: url('your-background-image.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    /* Scroll */
+    .custom-scroll::-webkit-scrollbar { width: 7px; }
+    .custom-scroll::-webkit-scrollbar-thumb {
+        background: #ff6fa6;
+        border-radius: 10px;
+    }
+
+    /* Shimmer */
+    .shimmer {
+        position: relative;
+        overflow: hidden;
+    }
+    .shimmer::after {
+        content: "";
+        position: absolute;
+        top: 0; left: -120%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent 0%, #ffffff80 50%, transparent 100%);
+        animation: shimmer 2.2s infinite;
+    }
+    @keyframes shimmer {
+        0% { left: -120%; }
+        100% { left: 120%; }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Floating Hearts -->
+<script>
+for (let i = 0; i < 15; i++) {
+    const heart = document.createElement("div");
+    heart.className = "floating-heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDelay = Math.random() * 5 + "s";
+    document.body.appendChild(heart);
+}
+</script>
+
+<!-- Card -->
+<div class="card-container">
+    <div id="card" class="card">
+
+        <!-- FRONT -->
+        <div class="card-face card-front">
+            <div class="shimmer p-6 rounded-2xl bg-white/40 backdrop-blur-md shadow-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-pink-700 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+
+                <h1 class="text-4xl font-extrabold text-pink-700 text-center mb-2 font-[Playfair Display]">
+                    A Special Delivery
+                </h1>
+
+                <p class="text-lg text-pink-600 text-center -mt-1">
+                    For the World's Best Mom
+                </p>
+
+                <p class="text-sm text-center mt-4 text-gray-700 italic">
+                    Tap to Open 💖
+                </p>
+            </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="card-face card-back flex flex-col">
+            <div class="w-full h-full p-5 overflow-y-auto custom-scroll backdrop-blur-sm bg-white/30 rounded-2xl">
+
+                <!-- Mom Photo -->
+                <div class="flex justify-center mb-4">
+                    <img src="Screenshot_20251122-114904~2.jpg"
+                         class="w-40 h-40 object-cover rounded-full shadow-xl border-4 border-pink-300">
+                </div>
+
+                <!-- Heading -->
+                <h2 class="text-3xl font-bold text-pink-600 mb-2 font-[Playfair Display]">
+                    Dear Mom,
+                </h2>
+
+                <!-- Message -->
+                <p class="text-gray-700 leading-relaxed mb-4 font-medium">
+                    Happy Birthday! Your love, strength, and endless kindness light up every corner of my life.
+                    Thank you for every sacrifice, every smile, every encouraging word, and every warm hug.
+                    It is no coincidence that my life is slowy shapping up, it is because of the prayers to the Lord every night you keep sending up. 
+                    You are the heart of our family, and the reason we stand strong. Our prayer warrior.
+                </p>
+
+                <div class="bg-pink-50 p-3 rounded-x1 shadow">
+                    <img src="Background image.jpg" class="rounded-lg mb-2 w-full" alt="">
+                </div>
+
+                <p class="font-semibold text-pink-600 text-base">
+                    May this year bless you with joy, peace, laughter, and beautiful moments.
+                </p>
+
+                <!-- Family Photo Section -->
+                <h3 class="text-2xl font-bold text-pink-700 mt-6 mb-3 text-center font-[Playfair Display]">
+                    Our Family ❤️
+                </h3>
+
+                <div class="bg-pink-50 p-3 rounded-xl shadow">
+                    <img src="family.jpg"
+                         class="rounded-lg mb-2 w-full">
+
+                    <p class="text-sm text-pink-700 font-semibold text-center">
+                        The family you built with love.
+                    </p>
+                    <p class="text-xs text-gray-700 text-center">
+                        We cherish you more than words can say.
+                    </p>
+                </div>
+
+                <p class="text-lg font-bold text-right text-pink-700 mt-6 font-[Playfair Display]">
+                    With all my love,<br>Victor
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+const card = document.getElementById("card");
+let flipped = false;
+
+/* Confetti Burst */
+function confettiBurst() {
+    for (let i = 0; i < 60; i++) {
+        const c = document.createElement("div");
+        c.style.position = "fixed";
+        c.style.width = "10px";
+        c.style.height = "10px";
+        c.style.background = ["#ff5c8a", "#ff9abf", "#ffd2e8", "#ffc8dd"][Math.floor(Math.random()*4)];
+        c.style.top = "50%";
+        c.style.left = "50%";
+        c.style.borderRadius = "50%";
+        c.style.opacity = 1;
+
+        const angle = Math.random() * 360;
+        const velocity = Math.random() * 7 + 3;
+
+        let x = 0, y = 0;
+
+        const el = c;
+        document.body.appendChild(el);
+
+        const anim = setInterval(() => {
+            x += Math.cos(angle) * velocity;
+            y += Math.sin(angle) * velocity;
+
+            el.style.transform = `translate(${x}px, ${y}px)`;
+            el.style.opacity -= 0.02;
+
+            if (el.style.opacity <= 0) {
+                clearInterval(anim);
+                el.remove();
+            }
+        }, 16);
+    }
+}
+
+/* Flip card on click */
+card.addEventListener("click", () => {
+    card.classList.toggle("flipped");
+
+    if (!flipped) {
+        confettiBurst();
+    }
+    flipped = !flipped;
+});
+</script>
+
+</body>
+</html>
